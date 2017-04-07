@@ -32,6 +32,7 @@
 #include "TvmGenerator.hpp"
 #include "SpmGenerator.hpp"
 #include "PythonGenerator.hpp"
+#include "FastrGenerator.hpp"
 
 CodeEditor::CodeEditor(
         QWidget* _parent
@@ -46,6 +47,8 @@ CodeEditor::CodeEditor(
     setupBashEditor();
     //Python
     setupPythonEditor();
+
+    setupFastrEditor();
 }
 
 void CodeEditor::generateCode(
@@ -144,6 +147,26 @@ void CodeEditor::setupPythonEditor(
     addTab(m_textEditors[python], python);
 }
 
+void CodeEditor::setupFastrEditor(
+        )
+{
+    const int tabWidth = 4;
+    QString python("Fastr");
+    m_programmingLanguages << python;
+    QFont pythonFont = QFont("Courier", 10);
+    pythonFont.setStyleHint(QFont::Monospace);
+    pythonFont.setFixedPitch(true);
+    QFontMetrics pythonMetric(pythonFont);
+
+    QTextEdit* pythonEditor = new QTextEdit(this);
+    pythonEditor->setFont(pythonFont);
+    pythonEditor->setTabStopWidth(tabWidth * pythonMetric.width(' '));
+
+    new PythonHighlighter(pythonEditor->document());
+    m_textEditors[python] = pythonEditor;
+    m_codeGenerators[python] = new FastrGenerator();
+    addTab(m_textEditors[python], python);
+}
 CodeEditor::~CodeEditor()
 {
 

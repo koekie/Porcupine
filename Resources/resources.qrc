@@ -7,6 +7,9 @@
    <qresource prefix="/Images">
       <file alias="RepeatingBrains.png">Images/RepeatingBrains.png</file>
    </qresource>
+   <qresource prefix="Dictionaries/fastr">
+       <file alias="node_999">../Resources/Dictionaries/fastr/Bet_0.1.node</file>
+   </qresource>
    <qresource prefix="Dictionaries/NiPype">
       <file alias="node_000.xml">../Resources/Dictionaries/NiPype/AFNI.AFNItoNIFTI.node</file>
       <file alias="node_001.xml">../Resources/Dictionaries/NiPype/AFNI.Allineate.node</file>

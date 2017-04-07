@@ -21,53 +21,38 @@
     <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CODEEDITOR_HPP
-#define CODEEDITOR_HPP
+#ifndef FASTRGENERATOR_HPP
+#define FASTRGENERATOR_HPP
 
-#include <QTabWidget>
+#include "CodeGenerator.hpp"
+#include "Link.hpp"
 
-class CodeGenerator;
-class Link;
-class NodeTreeItem;
-class QTextEdit;
-
-class CodeEditor : public QTabWidget
+class FastrGenerator : public CodeGenerator
 {
 public:
     //
-    CodeEditor(
-            QWidget* _parent = 0
-            );
+    FastrGenerator();
     //
-    void generateCode(
+    QString generateCode(
             const QList<NodeTreeItem*>& _nodeList,
             const QVector<const Link*>& _linkList = QVector<const Link*>(0)
             );
     //
-    ~CodeEditor(
-            );
+    ~FastrGenerator();
 private:
     //
-    void setupMatlabEditor(
-            );
+    QString linkToCode(
+            const Link* _link
+            ) const;
     //
-    void setupSpmEditor(
-            );
+    QString itemToCode(
+            const NodeTreeItem* _item
+            ) const;
     //
-    void setupBashEditor(
-            );
-    //
-    void setupPythonEditor(
-            );
-    //
-    void setupFastrEditor(
-            );
-    //
-    QMap<QString, QTextEdit*> m_textEditors;
-    //
-    QMap<QString, CodeGenerator*> m_codeGenerators;
-    //
-    QStringList m_programmingLanguages;
+    QString argumentToCode(
+            const Argument& _argument,
+            const NodeTreeItem* _item
+            ) const;
 };
 
-#endif // CODEEDITOR_HPP
+#endif // PYTHONGENERATOR_HPP
